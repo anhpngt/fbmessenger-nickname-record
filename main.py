@@ -43,9 +43,10 @@ class FBNicknameFinder:
 
     def printResult(self) -> None:
         distinctNames = Counter(item['nickname'] for item in self._result)
-        print(f'Found {len(distinctNames)} nicknames:')
-        for name, count in distinctNames.items():
-            print(f'\t{name}' + ('' if count == 1 else f' ({count} times)'))
+        if distinctNames:
+            print(f'Found {len(distinctNames)} nicknames:')
+            for name, count in distinctNames.items():
+                print(f'\t{name}' + ('' if count == 1 else f' ({count} times)'))
 
     def writeResult(self, outfile: str) -> None:
         with open(outfile, 'w') as fd:
